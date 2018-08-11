@@ -25,4 +25,9 @@ class CountryController extends Controller
     public function showLeaguesByCountry($countryId) {
         return response()->json(League::where('country_id', $countryId)->get());
     }
+
+    public function showAllLeaguesByCountry()
+    {
+        return response()->json(Country::getAllLeaguesByCountry());
+    }
 }

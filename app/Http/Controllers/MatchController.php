@@ -32,12 +32,13 @@ class MatchController extends Controller
         $startDate = ($lastMatchDate !== null) ? $date = date("Y-m-d", strtotime("+1 day", strtotime($lastMatchDate->match_date))) : $startDate = date('Y').'-07-01';
         $today = date('Y-m-d');
 
-        if ($startDate == $today)
+        if ($startDate === $today) {
             return;
+        }
 
         $res = $this->client->get($this->apiUrl.'?action=get_events&from=' . $startDate . '&to=' . $today . '&league_id=' . $leagueId . '&APIkey=' . $this->apiKey);
         $contents = json_decode($res->getBody()->getContents(), true);
-
+        
         if (!isset($contents['error'])) {
             Match::saveDataFromApi($contents);
         }
@@ -47,6 +48,7 @@ class MatchController extends Controller
     public function showCompletedMatches($leagueId) {
         // Update results first
         $this->getResultsFromApi($leagueId);
+
         return response()->json(Match::where('league_id', $leagueId)->get());
     }
 

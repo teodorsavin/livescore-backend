@@ -33,4 +33,17 @@ class Country extends Model
 
         return true;
     }
+
+    /**
+     * Get the leagues for the country.
+     */
+    public function leagues()
+    {
+        return $this->hasMany('App\League', 'country_id', 'country_id');
+    }
+
+    public static function getAllLeaguesByCountry()
+    {
+        return self::with('leagues')->get();
+    }
 }
