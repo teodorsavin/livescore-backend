@@ -38,7 +38,7 @@ class MatchController extends Controller
 
         $res = $this->client->get($this->apiUrl.'?action=get_events&from=' . $startDate . '&to=' . $today . '&league_id=' . $leagueId . '&APIkey=' . $this->apiKey);
         $contents = json_decode($res->getBody()->getContents(), true);
-        
+
         if (!isset($contents['error'])) {
             Match::saveDataFromApi($contents);
         }
@@ -50,6 +50,10 @@ class MatchController extends Controller
         $this->getResultsFromApi($leagueId);
 
         return response()->json(Match::where('league_id', $leagueId)->get());
+    }
+
+    public function showMatchDetails($matchId) {
+        return response()->json(Match::where('match_id', $matchId)->firstOrFail());
     }
 
     // seeders
