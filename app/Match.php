@@ -25,41 +25,43 @@ class Match extends Model
         $data = [];
         $i = 0;
         foreach ($matches as $matchData) {
-            $data[$i]['match_id'] = $matchData['match_id'];
-            $data[$i]['country_id'] = $matchData['country_id'];
-            $data[$i]['league_id'] = $matchData['league_id'];
+            if ($matchData['match_status'] != 'FT') {
+                $data[$i]['match_id'] = $matchData['match_id'];
+                $data[$i]['country_id'] = $matchData['country_id'];
+                $data[$i]['league_id'] = $matchData['league_id'];
 
-            // match details
-            $data[$i]['match_date'] = $matchData['match_date'];
-            $data[$i]['match_time'] = $matchData['match_time'];
-            $data[$i]['match_status'] = $matchData['match_status'];
-            $data[$i]['match_live'] = $matchData['match_live'];
+                // match details
+                $data[$i]['match_date'] = $matchData['match_date'];
+                $data[$i]['match_time'] = $matchData['match_time'];
+                $data[$i]['match_status'] = $matchData['match_status'];
+                $data[$i]['match_live'] = $matchData['match_live'];
 
-            // home team
-            $data[$i]['match_hometeam_name'] = $matchData['match_hometeam_name'];
-            $data[$i]['match_hometeam_score'] = $matchData['match_hometeam_score'];
-            $data[$i]['match_hometeam_system'] = $matchData['match_hometeam_system'];
-            $data[$i]['match_hometeam_extra_score'] = $matchData['match_hometeam_extra_score'];
-            $data[$i]['match_hometeam_penalty_score'] = $matchData['match_hometeam_penalty_score'];
-            $data[$i]['match_hometeam_halftime_score'] = $matchData['match_hometeam_halftime_score'];
+                // home team
+                $data[$i]['match_hometeam_name'] = $matchData['match_hometeam_name'];
+                $data[$i]['match_hometeam_score'] = $matchData['match_hometeam_score'];
+                $data[$i]['match_hometeam_system'] = $matchData['match_hometeam_system'];
+                $data[$i]['match_hometeam_extra_score'] = $matchData['match_hometeam_extra_score'];
+                $data[$i]['match_hometeam_penalty_score'] = $matchData['match_hometeam_penalty_score'];
+                $data[$i]['match_hometeam_halftime_score'] = $matchData['match_hometeam_halftime_score'];
 
-            // away team
-            $data[$i]['match_awayteam_name'] = $matchData['match_awayteam_name'];
-            $data[$i]['match_awayteam_score'] = $matchData['match_awayteam_score'];
-            $data[$i]['match_awayteam_system'] = $matchData['match_awayteam_system'];
-            $data[$i]['match_awayteam_extra_score'] = $matchData['match_awayteam_extra_score'];
-            $data[$i]['match_awayteam_penalty_score'] = $matchData['match_awayteam_penalty_score'];
-            $data[$i]['match_awayteam_halftime_score'] = $matchData['match_awayteam_halftime_score'];
+                // away team
+                $data[$i]['match_awayteam_name'] = $matchData['match_awayteam_name'];
+                $data[$i]['match_awayteam_score'] = $matchData['match_awayteam_score'];
+                $data[$i]['match_awayteam_system'] = $matchData['match_awayteam_system'];
+                $data[$i]['match_awayteam_extra_score'] = $matchData['match_awayteam_extra_score'];
+                $data[$i]['match_awayteam_penalty_score'] = $matchData['match_awayteam_penalty_score'];
+                $data[$i]['match_awayteam_halftime_score'] = $matchData['match_awayteam_halftime_score'];
 
-            // details
-            $data[$i]['lineup'] = json_encode($matchData['lineup']);
-            $data[$i]['statistics'] = json_encode($matchData['statistics']);
-            $data[$i]['cards'] = json_encode($matchData['cards']);
-            $data[$i]['goalscorer'] = json_encode($matchData['goalscorer']);
+                // details
+                $data[$i]['lineup'] = json_encode($matchData['lineup']);
+                $data[$i]['statistics'] = json_encode($matchData['statistics']);
+                $data[$i]['cards'] = json_encode($matchData['cards']);
+                $data[$i]['goalscorer'] = json_encode($matchData['goalscorer']);
 
-            $data[$i]['created_at'] = date('Y-m-d H:i:s');
-            $data[$i]['updated_at'] = date('Y-m-d H:i:s');
-            $i++;
+                $data[$i]['created_at'] = date('Y-m-d H:i:s');
+                $data[$i]['updated_at'] = date('Y-m-d H:i:s');
+                $i++;
+            }
         }
 
         if (!empty($data)) {
