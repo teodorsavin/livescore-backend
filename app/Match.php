@@ -25,7 +25,7 @@ class Match extends Model
         $data = [];
         $i = 0;
         foreach ($matches as $matchData) {
-            if ($matchData['match_status'] != 'FT') {
+            if ($matchData['match_status'] == 'FT') {
                 $data[$i]['match_id'] = $matchData['match_id'];
                 $data[$i]['country_id'] = $matchData['country_id'];
                 $data[$i]['league_id'] = $matchData['league_id'];
