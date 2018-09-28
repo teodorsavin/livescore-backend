@@ -13,7 +13,9 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\AddNewPollQuestionCommand::class,
+        Commands\RespondToPollQuestionCommand::class,
+        Commands\GetPollResultsCommand::class,
     ];
 
     /**

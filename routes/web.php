@@ -22,4 +22,5 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('/leagues/{countryId}', ['uses' => 'CountryController@showLeaguesByCountry']);
     $router->get('/leagues', ['uses' => 'CountryController@showAllLeaguesByCountry']);
     $router->get('/match/{matchId}', ['uses' => 'MatchController@showMatchDetails']);
+    $router->get('/polls', ['uses' => 'PollController@showPolls']);
 });
