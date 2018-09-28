@@ -18,6 +18,7 @@ $router->get('/', function () use ($router) {
 $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('/completed-matches/{leagueId}',  ['uses' => 'MatchController@showCompletedMatches']);
     $router->get('/countries',  ['uses' => 'CountryController@showCountries']);
+    $router->get('/countries/competitions',  ['uses' => 'MatchController@getAllCompetitions']);
     $router->get('/leagues/{countryId}', ['uses' => 'CountryController@showLeaguesByCountry']);
     $router->get('/leagues', ['uses' => 'CountryController@showAllLeaguesByCountry']);
     $router->get('/match/{matchId}', ['uses' => 'MatchController@showMatchDetails']);

@@ -67,7 +67,7 @@ class MatchController extends Controller
         League::saveDataFromApi(json_decode($res->getBody()->getContents(), true));
     }
 
-    private function getAllCompetitions() {
+    public function getAllCompetitions() {
         $countries = Country::all();
         foreach ($countries as $country) {
             $this->saveCompetitionsFromApi($country->country_id);
