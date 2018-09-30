@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Poll;
-use App\PollResults;
+use App\PollResult;
 
 use Exception;
 use Illuminate\Console\Command;
@@ -46,7 +46,7 @@ class RespondToPollQuestionCommand extends Command {
             $pollResponseOption = $this->choice($poll->poll_question, $pollOptions);
             $pollResponseOptionId = array_search($pollResponseOption, $pollOptions);
 
-            $pollResult = PollResults::create([
+            $pollResult = PollResult::create([
                 'poll_id' => $poll->poll_id,
                 'poll_option_id' => $pollResponseOptionId,
             ]);
