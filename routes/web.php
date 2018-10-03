@@ -22,5 +22,10 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('/leagues/{countryId}', ['uses' => 'CountryController@showLeaguesByCountry']);
     $router->get('/leagues', ['uses' => 'CountryController@showAllLeaguesByCountry']);
     $router->get('/match/{matchId}', ['uses' => 'MatchController@showMatchDetails']);
+
     $router->get('/poll/{pollId}', ['uses' => 'PollController@showPoll']);
+    $router->get('/poll/results/{pollId}', ['uses' => 'PollController@getPollResults']);
+    $router->post('/poll/{pollId}', ['uses' => 'PollController@vote']);
+
+    $router->get('/getIp', ['uses' => 'PollController@getIp']);
 });
